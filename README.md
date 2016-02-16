@@ -25,7 +25,7 @@ use gigi\events\classes\Messenger;
 
 $handler = Messenger::getInstance();
 ```
-Subscribe messages
+Subscribe to messages
 ```php
 $handler->subscribe('message.test', function ($message) {
     // do something with message

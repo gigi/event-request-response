@@ -2,7 +2,7 @@
   "name": "gigi/event-request-response",
   "license": "MIT",
   "keywords": ["events", "response", "request", "message", "subscribe", "publish"],
-  "description": "Allows to publish messages and/or getting response from each subscriber",
+  "description": "Allows to publish messages and getting response from each subscriber",
   "authors": [
     {
       "name": "Alexey Snigirev",
