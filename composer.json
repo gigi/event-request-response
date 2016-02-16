@@ -1,0 +1,19 @@
+{
+  "name": "gigi/event-request-response",
+  "license": "MIT",
+  "keywords": ["events", "response", "request", "message", "subscribe", "publish"],
+  "description": "Allows to publish messages and/or getting response from each subscriber",
+  "authors": [
+    {
+      "name": "Alexey Snigirev",
+      "email": "gigi@ua.fm"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "gigi\\events\\": ""
+    }
+  },
+  "minimum-stability": "stable",
+  "require": {}
+}
