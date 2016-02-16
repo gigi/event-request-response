@@ -14,6 +14,5 @@
       "gigi\\events\\": ""
     }
   },
-  "minimum-stability": "dev-master",
   "require": {}
 }
