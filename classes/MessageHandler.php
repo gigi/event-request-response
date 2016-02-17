@@ -97,13 +97,29 @@ class MessageHandler implements MessageHandlerInterface
         }
         $reply = call_user_func($function, $message);
         if ($mode !== MessageHandlerInterface::MODE_ASYNC) {
-            $replyMessage = new Message(static::REPLY_MESSAGE_NAME, $reply);
-            $replyMessage->setSender($context);
+            $replyMessage = $this->createReply($reply, $context);
             $message->addReply($replyMessage);
             if ($mode == MessageHandlerInterface::MODE_REPLY_FIRST) {
                 $message->setIsHandled(true);
             }
         }
+    }
+
+    /**
+     * Creating reply message
+     *
+     * @param mixed $data to send
+     * @param mixed $sender class, object or logical param ($context param)
+     * @see \gigi\events\interfaces\SubscriberInterface::subscribe()
+     *
+     * @return Message
+     */
+    protected function createReply($data, $sender)
+    {
+        $replyMessage = new Message(static::REPLY_MESSAGE_NAME, $data);
+        $replyMessage->setSender($sender);
+
+        return $replyMessage;
     }
 
     /**
