@@ -68,6 +68,49 @@ For detailed usage see ```examples/singleton.php```.
 If singleton makes you cry or your project has own dependency injection container inject ```gigi\classes\MessageHandler``` to new instances of ```gigi\classes\Publisher``` and ```gigi\classes\Subscriber```.
 See ```examples/di.php```
 
+Usage with Yii2 Framework
+-
+Add Publisher and Subscriber components to config (config/web.php)
+```
+return [
+    ...
+    'components' => [
+        ...
+        'subscriber' => 'gigi\events\classes\Subscriber',
+        'publisher'  => 'gigi\events\classes\Publisher',
+        ...
+
+```
+Add ```gigi\events\classes\MessageHandlerInterface``` to DI container. For more information about Yii2 DI container see [http://www.yiiframework.com/doc-2.0/guide-concept-di-container.html](http://www.yiiframework.com/doc-2.0/guide-concept-di-container.html)
+```
+\Yii::$container->setSingleton(
+    'gigi\events\interfaces\MessageHandlerInterface',
+    'gigi\events\classes\MessageHandler'
+);
+```
+**Subscribing for event:**
+```
+\Yii::$app->get('subscriber')->subscribe($event, $handler);
+```
+**Publishing:**
+```
+...
+use gigi\events\classes\Message;
+...
+
+/** @var \gigi\events\interfaces\MessageInterface $message */
+$message = new Message($messageName, $data);
+
+// async
+\Yii::$app->get('publisher')->request($message);
+
+// all replies
+\Yii::$app->get('publisher')->requestReply($message);
+
+// first reply
+\Yii::$app->get('publisher')->requestFirstReply($message);
+```
+
 Or implement you own classes for interfaces...
 
 Enjoy :)
