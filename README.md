@@ -4,8 +4,6 @@ Small Subscriber/Publisher messaging system.
 
 Package implements One-way Message Exchange Pattern and Request-Reply Message Exchange Pattern.
 
-Observer with Mediator patterns included :)
-
 Requirement
 -----------
 
